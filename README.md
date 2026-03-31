@@ -45,6 +45,7 @@ pip install -r requirements.txt
 ## Testing PawPal+
 
 Run the automated test suite with:
+
 ```bash
 python -m pytest
 ```
