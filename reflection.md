@@ -17,7 +17,7 @@ The system is built around four classes:
 
 **b. Design changes**
 
-Added pet_name to Task for easier filtering. Added mark_task_complete in Pet to handle recurring tasks by creating new instances.
+Added pet_name to Task for easier filtering. Added mark_task_complete in Pet to handle recurring tasks by creating new instances. Created run.sh script for easy app launching.
 
 ---
 
