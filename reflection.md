@@ -4,8 +4,16 @@
 
 **a. Initial design**
 
-- Briefly describe your initial UML design.
-- What classes did you include, and what responsibilities did you assign to each?
+Three core user actions the app supports:
+1. Add a pet (name, species) to the owner's profile
+2. Add a care task (walk, feeding, medication, etc.) to a specific pet with a time and priority
+3. Generate a daily schedule that sorts and displays all tasks in chronological order
+
+The system is built around four classes:
+- **Task** — holds a single activity's details (description, time, frequency, priority, duration, completion status). Responsible for tracking whether a task is done and whether it recurs.
+- **Pet** — stores a pet's name and species, and maintains a list of that pet's tasks. Responsible for adding and retrieving tasks.
+- **Owner** — holds the owner's name and a list of their pets. Responsible for aggregating tasks across all pets.
+- **Scheduler** — the "brain" of the app. Takes an Owner and provides methods to retrieve, sort, filter, and detect conflicts in the full task list.
 
 **b. Design changes**
 
