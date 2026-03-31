@@ -1,0 +1,77 @@
+{
+  "name": "Jordan",
+  "pets": [
+    {
+      "name": "Mochi",
+      "species": "dog",
+      "tasks": [
+        {
+          "description": "Morning walk",
+          "time": "08:00",
+          "frequency": "daily",
+          "priority": "high",
+          "duration_minutes": 30,
+          "completed": false,
+          "due_date": null,
+          "pet_name": "Mochi"
+        },
+        {
+          "description": "Feed breakfast",
+          "time": "07:00",
+          "frequency": "daily",
+          "priority": "medium",
+          "duration_minutes": 30,
+          "completed": false,
+          "due_date": null,
+          "pet_name": "Mochi"
+        },
+        {
+          "description": "Vet appointment",
+          "time": "10:00",
+          "frequency": "once",
+          "priority": "high",
+          "duration_minutes": 30,
+          "completed": false,
+          "due_date": null,
+          "pet_name": "Mochi"
+        },
+        {
+          "description": "Daily feed",
+          "time": "07:00",
+          "frequency": "daily",
+          "priority": "high",
+          "duration_minutes": 30,
+          "completed": true,
+          "due_date": null,
+          "pet_name": "Mochi"
+        },
+        {
+          "description": "Daily feed",
+          "time": "07:00",
+          "frequency": "daily",
+          "priority": "high",
+          "duration_minutes": 30,
+          "completed": false,
+          "due_date": "2026-04-01",
+          "pet_name": "Mochi"
+        }
+      ]
+    },
+    {
+      "name": "Whiskers",
+      "species": "cat",
+      "tasks": [
+        {
+          "description": "Evening play",
+          "time": "18:00",
+          "frequency": "daily",
+          "priority": "low",
+          "duration_minutes": 30,
+          "completed": false,
+          "due_date": null,
+          "pet_name": "Whiskers"
+        }
+      ]
+    }
+  ]
+}

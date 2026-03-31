@@ -47,3 +47,11 @@ print(f"Tasks before marking complete: {len(pet1.get_tasks())}")
 pet1.mark_task_complete(recurring_task)
 print(f"Tasks after marking complete: {len(pet1.get_tasks())}")
 print("New task added:", pet1.get_tasks()[-1].description if len(pet1.get_tasks()) > 4 else "None")
+
+# Test persistence
+print("\nTesting data persistence:")
+owner.save_to_json("test_data.json")
+loaded_owner = Owner.load_from_json("test_data.json")
+print(f"Original owner: {owner.name}, {len(owner.pets)} pets")
+print(f"Loaded owner: {loaded_owner.name}, {len(loaded_owner.pets)} pets")
+print("Persistence test passed!")

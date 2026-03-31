@@ -7,7 +7,7 @@ st.title("🐾 PawPal+")
 
 # Initialize session state for Owner
 if "owner" not in st.session_state:
-    st.session_state.owner = Owner(name="Default Owner")
+    st.session_state.owner = Owner.load_from_json()
 
 owner = st.session_state.owner
 
@@ -121,3 +121,17 @@ if st.button("Generate schedule"):
             st.success("No conflicts detected!")
     else:
         st.warning("Add pets and tasks first.")
+
+st.divider()
+
+st.subheader("Data Management")
+col1, col2 = st.columns(2)
+with col1:
+    if st.button("Save Data"):
+        owner.save_to_json()
+        st.success("Data saved to pawpal_data.json!")
+with col2:
+    if st.button("Load Data"):
+        st.session_state.owner = Owner.load_from_json()
+        st.rerun()  # Refresh the app
+        st.success("Data loaded from pawpal_data.json!")

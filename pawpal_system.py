@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from datetime import date, timedelta
 from typing import Optional
+import json
 
 
 @dataclass
@@ -20,6 +21,32 @@ class Task:
 
     def is_recurring(self) -> bool:
         return self.frequency != "once"
+
+    def to_dict(self):
+        return {
+            "description": self.description,
+            "time": self.time,
+            "frequency": self.frequency,
+            "priority": self.priority,
+            "duration_minutes": self.duration_minutes,
+            "completed": self.completed,
+            "due_date": self.due_date.isoformat() if self.due_date else None,
+            "pet_name": self.pet_name
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        due_date = date.fromisoformat(data["due_date"]) if data["due_date"] else None
+        return cls(
+            description=data["description"],
+            time=data["time"],
+            frequency=data["frequency"],
+            priority=data["priority"],
+            duration_minutes=data["duration_minutes"],
+            completed=data["completed"],
+            due_date=due_date,
+            pet_name=data["pet_name"]
+        )
 
 
 @dataclass
@@ -56,6 +83,21 @@ class Pet:
             )
             self.add_task(new_task)
 
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "species": self.species,
+            "tasks": [task.to_dict() for task in self.tasks]
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        pet = cls(name=data["name"], species=data["species"])
+        for task_data in data["tasks"]:
+            task = Task.from_dict(task_data)
+            pet.tasks.append(task)
+        return pet
+
 
 @dataclass
 class Owner:
@@ -71,6 +113,33 @@ class Owner:
         for pet in self.pets:
             all_tasks.extend(pet.get_tasks())
         return all_tasks
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "pets": [pet.to_dict() for pet in self.pets]
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        owner = cls(name=data["name"])
+        for pet_data in data["pets"]:
+            pet = Pet.from_dict(pet_data)
+            owner.add_pet(pet)
+        return owner
+
+    def save_to_json(self, filename="pawpal_data.json"):
+        with open(filename, "w") as f:
+            json.dump(self.to_dict(), f, indent=2, default=str)
+
+    @classmethod
+    def load_from_json(cls, filename="pawpal_data.json"):
+        try:
+            with open(filename, "r") as f:
+                data = json.load(f)
+            return cls.from_dict(data)
+        except FileNotFoundError:
+            return cls(name="Default Owner")
 
 
 class Scheduler:
