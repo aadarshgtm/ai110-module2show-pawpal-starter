@@ -51,3 +51,10 @@ python -m pytest
 ```
 
 The tests cover task completion, addition, sorting by priority and time, filtering by pet, and conflict detection. Confidence level: ⭐⭐⭐⭐⭐ (5/5) - all tests pass and core functionality is verified.
+
+## Optional Extensions Implemented
+
+- **Data Persistence**: Save and load pet/task data to/from JSON file (`pawpal_data.json`)
+- **Advanced Priority Scheduling**: Tasks sorted by priority (high→medium→low) then time
+- **Recurring Tasks**: Daily/weekly tasks automatically create next occurrence when marked complete
+- **Conflict Detection**: Identifies tasks scheduled at the same time
